@@ -1,0 +1,8 @@
+module Home exposing (view)
+
+import Element exposing (..)
+
+
+view : Element msg
+view =
+    text "Home"
