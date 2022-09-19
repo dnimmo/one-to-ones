@@ -4,6 +4,8 @@ import Browser
 import Browser.Navigation as Navigation
 import Element exposing (..)
 import Home
+import NotFound
+import Route
 import Url exposing (Url)
 
 
@@ -19,6 +21,7 @@ type alias Model =
 
 type State
     = ViewingHomePage
+    | ViewingNotFound
 
 
 
@@ -32,11 +35,16 @@ type Msg
 
 handleUrlChange : Model -> Url -> ( Model, Cmd Msg )
 handleUrlChange model url =
-    -- case Route.fromUrl url of
-    --     Route.Home ->
-    ( { model | state = ViewingHomePage }
-    , Cmd.none
-    )
+    case Route.fromUrl url of
+        Route.Home ->
+            ( { model | state = ViewingHomePage }
+            , Cmd.none
+            )
+
+        Route.NotFound ->
+            ( { model | state = ViewingNotFound }
+            , Cmd.none
+            )
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -72,6 +80,9 @@ view model =
             case model.state of
                 ViewingHomePage ->
                     Home.view
+
+                ViewingNotFound ->
+                    NotFound.view
         ]
     }
 
