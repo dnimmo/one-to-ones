@@ -2,6 +2,7 @@ module Main exposing (main)
 
 import Browser
 import Browser.Navigation as Navigation
+import Dashboard
 import Element exposing (..)
 import Home
 import NotFound
@@ -21,6 +22,7 @@ type alias Model =
 
 type State
     = ViewingHomePage
+    | ViewingDashboard Dashboard.Model
     | ViewingNotFound
 
 
@@ -38,6 +40,11 @@ handleUrlChange model url =
     case Route.fromUrl url of
         Route.Home ->
             ( { model | state = ViewingHomePage }
+            , Cmd.none
+            )
+
+        Route.Dashboard ->
+            ( { model | state = ViewingDashboard Dashboard.init }
             , Cmd.none
             )
 
@@ -80,6 +87,9 @@ view model =
             case model.state of
                 ViewingHomePage ->
                     Home.view
+
+                ViewingDashboard dashboardModel ->
+                    Dashboard.view dashboardModel
 
                 ViewingNotFound ->
                     NotFound.view

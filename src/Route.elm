@@ -7,11 +7,13 @@ import Url.Parser as Parser exposing (Parser)
 
 type Route
     = Home
+    | Dashboard
     | NotFound
 
 
 slugs =
     { home = "home"
+    , dashboard = "dashboard"
     }
 
 
@@ -20,6 +22,7 @@ parser =
     Parser.oneOf
         [ Parser.map Home Parser.top
         , Parser.map Home (Parser.s slugs.home)
+        , Parser.map Dashboard (Parser.s slugs.dashboard)
         ]
 
 

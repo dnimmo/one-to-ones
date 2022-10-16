@@ -5,4 +5,10 @@ import Element exposing (..)
 
 view : Element msg
 view =
-    text "Home"
+    column []
+        [ text "Log in shit will go here"
+        , link []
+            { url = "/dashboard"
+            , label = text "just go to the dashboard for now"
+            }
+        ]
