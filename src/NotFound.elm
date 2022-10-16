@@ -1,8 +1,12 @@
 module NotFound exposing (view)
 
+import Components
 import Element exposing (..)
 
 
 view : Element msg
 view =
-    text "Page not found"
+    Components.frame
+        { title = "Something has gone wrong"
+        , contents = [ text "Sorry, that page doesn't seem to exist." ]
+        }
