@@ -17,6 +17,6 @@ view =
             [ text "Log in shit will go here"
             , link []
                 { url = "/dashboard"
-                , label = text "just go to the dashboard for now"
+                , label = text "just go to the dashboard for now >"
                 }
             ]

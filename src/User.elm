@@ -14,6 +14,7 @@ type User
     = User
         { name :
             { first : String
+            , middle : Maybe String
             , last : String
             }
         , directReports : List DirectReport
@@ -42,6 +43,7 @@ init =
     User
         { name =
             { first = "Nimmo"
+            , middle = Just "some middle name"
             , last = ""
             }
         , directReports =

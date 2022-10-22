@@ -4,6 +4,7 @@ import Action exposing (Action)
 import Components
 import DirectReport exposing (DirectReport)
 import Element exposing (..)
+import Element.Input as Input
 import Font
 import Layout
 import User exposing (User)
@@ -24,7 +25,10 @@ directReports reports =
             :: (reports
                     |> List.map
                         (\x ->
-                            text <| DirectReport.name x
+                            link []
+                                { label = text <| DirectReport.name x
+                                , url = "/board/" ++ DirectReport.id x
+                                }
                         )
                )
         )
@@ -49,12 +53,17 @@ view (Model user) =
     Components.frame
         { title = "Dashboard"
         , contents =
-            [ el [ Font.size 24 ] <|
+            [ el
+                [ Font.size 24
+                ]
+              <|
                 text <|
                     "Hi, "
                         ++ User.firstName user
                         ++ "!"
-            , column [ Layout.verticalSpacing ]
+            , column
+                [ Layout.verticalSpacing
+                ]
                 [ directReports <| User.directReports user
                 , actions <| User.actions user
                 ]

@@ -1,5 +1,6 @@
 module Main exposing (main)
 
+import Board
 import Browser
 import Browser.Navigation as Navigation
 import Dashboard
@@ -23,6 +24,7 @@ type alias Model =
 type State
     = ViewingHomePage
     | ViewingDashboard Dashboard.Model
+    | ViewingBoard Board.Model
     | ViewingNotFound
 
 
@@ -45,6 +47,11 @@ handleUrlChange model url =
 
         Route.Dashboard ->
             ( { model | state = ViewingDashboard Dashboard.init }
+            , Cmd.none
+            )
+
+        Route.Board directReportId ->
+            ( { model | state = ViewingBoard <| Board.init directReportId }
             , Cmd.none
             )
 
@@ -90,6 +97,9 @@ view model =
 
                 ViewingDashboard dashboardModel ->
                     Dashboard.view dashboardModel
+
+                ViewingBoard boardModel ->
+                    Board.view boardModel
 
                 ViewingNotFound ->
                     NotFound.view

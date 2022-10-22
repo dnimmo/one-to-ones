@@ -6,7 +6,9 @@ type Action
 
 
 type alias ActionDetails =
-    { description : String }
+    { description : String
+    , id : String
+    }
 
 
 type ActionType
@@ -32,4 +34,7 @@ isComplete (Action t _) =
 init : Action
 init =
     -- This will eventually be a decoder, but for now just do a dummy action thing
-    Action ToDo { description = "My action" }
+    Action ToDo
+        { description = "My action"
+        , id = "some-action-id"
+        }

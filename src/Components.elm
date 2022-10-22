@@ -1,9 +1,25 @@
 module Components exposing (..)
 
 import Element exposing (..)
+import Element.Background as Background
 import Element.Border as Border
 import Font
 import Layout
+
+
+roundedBorder : Attribute msg
+roundedBorder =
+    Border.rounded 12
+
+
+shadow : Attribute msg
+shadow =
+    Border.shadow
+        { offset = ( 1, 1 )
+        , blur = 10
+        , size = 2
+        , color = rgba255 0 0 0 0.2
+        }
 
 
 header : String -> Element msg
@@ -13,12 +29,8 @@ header str =
         , Font.size 48
         , width fill
         , padding 10
-        , Border.shadow
-            { offset = ( 1, 1 )
-            , blur = 10
-            , size = 2
-            , color = rgba255 0 0 0 0.2
-            }
+        , shadow
+        , Background.color <| rgb255 255 255 255
         ]
     <|
         el [ centerX ] <|
@@ -41,6 +53,7 @@ frame { title, contents } =
             [ width fill
             , height fill
             , Layout.verticalSpacing
+            , Background.color <| rgba255 0 0 255 0.2
             ]
             [ header title
             , column
